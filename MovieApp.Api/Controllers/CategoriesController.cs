@@ -17,6 +17,7 @@ namespace MovieApp.Api.Controllers
         }
 
         [HttpGet("getCategories")]
+        [Logger]
         public IActionResult GetCategories()
         {
             return Ok(_categoryService.GetCategories());

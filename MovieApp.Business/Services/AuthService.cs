@@ -59,7 +59,7 @@ namespace MovieApp.Business.Services
         public void SignOut(string userName)
         {
             _httpContextAccessor.HttpContext.Session.Clear();
-            _userRepository.UpdateToken(userName,string.Empty);
+            _userRepository.UpdateToken(userName, string.Empty);
         }
 
         public bool IsTokenValid(string userName)

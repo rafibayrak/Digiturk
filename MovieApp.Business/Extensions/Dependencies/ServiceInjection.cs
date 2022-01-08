@@ -7,11 +7,12 @@ namespace MovieApp.Business.Extensions.Dependencies
     public static class ServiceInjection
     {
         public static void CustomServiceInjection(this IServiceCollection services) {
+            services.AddMemoryCache();
             services.AddHttpContextAccessor();
             services.AddAutoMapper(typeof(ServiceInjection));
-            services.AddScoped<IAuthService, AuthService>();
-            services.AddScoped<IMovieService, MovieService>();
-            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddSingleton<IAuthService, AuthService>();
+            services.AddSingleton<IMovieService, MovieService>();
+            services.AddSingleton<ICategoryService, CategoryService>();
         }
     }
 }

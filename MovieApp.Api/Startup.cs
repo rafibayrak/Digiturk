@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -7,6 +10,7 @@ using Microsoft.OpenApi.Models;
 using MovieApp.Business.Extensions;
 using MovieApp.Business.Extensions.Dependencies;
 using MovieApp.Data.Core;
+using NLog;
 using System.Text;
 
 namespace MovieApp.Api
@@ -45,7 +49,6 @@ namespace MovieApp.Api
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Movie.Api v1"));
             }
-
             app.CustomExceptionHandler();
 
             app.UseHttpsRedirection();
@@ -55,6 +58,11 @@ namespace MovieApp.Api
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.Use(next => context =>
+            {
+                context.Request.EnableBuffering();
+                return next(context);
+            });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

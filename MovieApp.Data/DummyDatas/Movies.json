@@ -1,0 +1,12 @@
+[
+  {
+    "id": "84e0ff93-43c5-42db-862d-50d87b8cd64d",
+    "name": "Harry Potter",
+    "creationTime": "8/18/2010 12:00:00 AM",
+    "modifyTime": "8/18/2010 12:00:00 AM",
+    "releaseDate": "8/18/2010 12:00:00 AM",
+    "description": "Güzel film",
+    "categoryId": "64e0ff93-43c5-42db-862d-50d87b8cd64d",
+    "point": 4
+  }
+]

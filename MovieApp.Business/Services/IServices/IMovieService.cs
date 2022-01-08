@@ -6,7 +6,7 @@ namespace MovieApp.Business.Services.IServices
 {
     public interface IMovieService
     {
-        public MovieDto GetMovieById(Guid id);
+        public MovieDto GetMovieById2(Guid id);
         public List<MovieDto> GetMoviesByCategoryId(Guid categoryId);
         public string GetMoviePath(string movieId);
         public List<MovieDto> GetTopTwentyMovies();

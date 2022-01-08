@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Options;
+using MovieApp.Business.Aspects;
 using MovieApp.Business.Services.IServices;
 using MovieApp.Data.Core;
 using MovieApp.Data.Dtos;
@@ -23,7 +24,8 @@ namespace MovieApp.Business.Services
             _mapper = mapper;
         }
 
-        public MovieDto GetMovieById(Guid id)
+        [MemoryCacheAspect]
+        public MovieDto GetMovieById2(Guid id)
         {
             return _mapper.Map<MovieDto>(_movieRepository.GetMovieById(id));
         }

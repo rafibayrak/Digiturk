@@ -5,17 +5,17 @@ namespace MovieApp.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DashboardController : ControllerBase
+    public class HomeController : ControllerBase
     {
         private readonly IMovieService _movieService;
 
-        public DashboardController(IMovieService movieService)
+        public HomeController(IMovieService movieService)
         {
             _movieService = movieService;
         }
 
-        [HttpGet("getTopTwentyMovie")]
-        public IActionResult GetTopTwentyMovie()
+        [HttpGet("getTopTwentyMovies")]
+        public IActionResult GetTopTwentyMovies()
         {
             return Ok(_movieService.GetTopTwentyMovies());
         }

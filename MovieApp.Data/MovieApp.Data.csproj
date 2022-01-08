@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Update="DummyDatas\Categories.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DummyDatas\Movies.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="DummyDatas\Users.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

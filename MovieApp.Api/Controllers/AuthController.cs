@@ -2,6 +2,7 @@
 using MovieApp.Business.Aspects;
 using MovieApp.Business.Services.IServices;
 using MovieApp.Data.Dtos;
+using System;
 
 namespace MovieApp.Api.Controllers
 {
@@ -17,13 +18,20 @@ namespace MovieApp.Api.Controllers
         }
 
         [HttpPost("signin")]
+        [Logger]
         public IActionResult SignIn(LoginDto loginDto)
         {
             var userAuthDto = _authService.SignIn(loginDto);
+            if (userAuthDto == null)
+            {
+                throw new Exception("User not found");
+            }
+
             return Ok(userAuthDto);
         }
 
         [HttpGet("signOut")]
+        [Logger]
         [AuthorizeVerifyToken]
         public IActionResult SignOut()
         {
