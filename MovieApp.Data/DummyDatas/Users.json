@@ -1,0 +1,26 @@
+[
+  {
+    "id": "8348eaa3-adad-4ec5-a848-27d9a74f93f0",
+    "creationTime": "8/18/2010 12:00:00 AM",
+    "modifyTime": "8/18/2010 12:00:00 AM",
+    "FullName": "Rafi Bayrak",
+    "userName": "arifrafi",
+    "password": "202CB962AC59075B964B07152D234B70",
+    "token": "",
+    "refreshToken": "",
+    "isActive": true,
+    "isDelete": false
+  },
+  {
+    "id": "fe6d47f3-344e-4fda-8dd3-5260d73966ff",
+    "creationTime": "8/18/2010 12:00:00 AM",
+    "modifyTime": "8/18/2010 12:00:00 AM",
+    "FullName": "Arif Bayrak",
+    "userName": "arifrafi2",
+    "password": "202CB962AC59075B964B07152D234B70",
+    "token": "",
+    "refreshToken": "",
+    "isActive": true,
+    "isDelete": false
+  }
+]
