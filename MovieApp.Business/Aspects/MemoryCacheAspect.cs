@@ -1,24 +1,31 @@
 ﻿using Castle.DynamicProxy;
 using MovieApp.Business.Interseptors;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MovieApp.Business.Aspects
 {
     public class MemoryCacheAspect : MethodInterception
     {
+        private Dictionary<string, object> cache = new Dictionary<string, object>();
+
         protected override void OnBefore(IInvocation invocation)
         {
-            //var validator = (IValidator)Activator.CreateInstance(_validatorType);
-            //var entityType = _validatorType.BaseType.GetGenericArguments()[0];
-            //var entities = invocation.Arguments.Where(x => x.GetType() == entityType);
-            //foreach (var entity in entities)
-            //{
-            //    ValidationTool.Validate(validator, entity);
-            //}
+            var name = $"{invocation.Method.DeclaringType}_{invocation.Method.Name}";
+            var args = string.Join(", ", invocation.Arguments.Select(a => (a ?? "").ToString()));
+            var cacheKey = $"{name}|{args}";
+
+            cache.TryGetValue(cacheKey, out object returnValue);
+            if (returnValue == null)
+            {
+                invocation.Proceed();
+                returnValue = invocation.ReturnValue;
+                cache.Add(cacheKey, returnValue);
+            }
+            else
+            {
+                invocation.ReturnValue = returnValue;
+            }
         }
     }
 }

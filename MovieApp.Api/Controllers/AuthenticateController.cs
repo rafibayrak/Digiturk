@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MovieApp.Business.Aspects;
+using MovieApp.Business.Extensions;
 using MovieApp.Business.Services.IServices;
 using MovieApp.Data.Dtos;
 using System;
@@ -8,17 +9,17 @@ namespace MovieApp.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController : ControllerBase
+    public class AuthenticateController : ControllerBase
     {
-        private readonly IAuthService _authService;
+        private readonly IAuthenticateService _authService;
 
-        public AuthController(IAuthService authService)
+        public AuthenticateController(IAuthenticateService authService)
         {
             _authService = authService;
         }
 
         [HttpPost("signin")]
-        [Logger]
+        //[Logger]
         public IActionResult SignIn(LoginDto loginDto)
         {
             var userAuthDto = _authService.SignIn(loginDto);
@@ -27,11 +28,10 @@ namespace MovieApp.Api.Controllers
                 throw new Exception("User not found");
             }
 
-            return Ok(userAuthDto);
+            return this.NotFoundOrOk(userAuthDto);
         }
 
-        [HttpGet("signOut")]
-        [Logger]
+        [HttpGet("signout")]
         [AuthorizeVerifyToken]
         public IActionResult SignOut()
         {

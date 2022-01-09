@@ -1,4 +1,5 @@
-﻿using MovieApp.Business.Services.IServices;
+﻿using MovieApp.Business.Aspects;
+using MovieApp.Business.Services.IServices;
 using MovieApp.Data.Models;
 using MovieApp.DataAccess.Repositories.IRepositories;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace MovieApp.Business.Services
             _categoryRepository = categoryRepository;
         }
 
+        [LoggerAspect]
+        [MemoryCacheAspect]
         public List<Category> GetCategories()
         {
             return _categoryRepository.GetCategories();

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using MovieApp.Business.Aspects;
+using MovieApp.Business.FluentValidators;
 using MovieApp.Business.Helpers;
 using MovieApp.Business.Services.IServices;
 using MovieApp.Data.Core;
@@ -13,19 +15,21 @@ using System.Text;
 
 namespace MovieApp.Business.Services
 {
-    public class AuthService : IAuthService
+    public class AuthenticateService : IAuthenticateService
     {
         private readonly AppSettings _appSettings;
         private readonly IUserRepository _userRepository;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AuthService(IOptions<AppSettings> appSettings, IUserRepository userRepository, IHttpContextAccessor httpContextAccessor)
+        public AuthenticateService(IOptions<AppSettings> appSettings, IUserRepository userRepository, IHttpContextAccessor httpContextAccessor)
         {
             _appSettings = appSettings.Value;
             _userRepository = userRepository;
             _httpContextAccessor = httpContextAccessor;
         }
 
+        [ValidationAspect(typeof(LoginValidator))]
+        [LoggerAspect]
         public UserAuthDto SignIn(LoginDto loginDto)
         {
             var user = _userRepository.GetUserByUserName(loginDto.UserName);
@@ -56,12 +60,14 @@ namespace MovieApp.Business.Services
             };
         }
 
+        [LoggerAspect]
         public void SignOut(string userName)
         {
             _httpContextAccessor.HttpContext.Session.Clear();
             _userRepository.UpdateToken(userName, string.Empty);
         }
 
+        [LoggerAspect]
         public bool IsTokenValid(string userName)
         {
             var user = _userRepository.GetUserByUserName(userName);

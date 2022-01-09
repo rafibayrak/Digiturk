@@ -2,7 +2,7 @@
 
 namespace MovieApp.Business.Services.IServices
 {
-    public interface IAuthService
+    public interface IAuthenticateService
     {
         public UserAuthDto SignIn(LoginDto loginDto);
         public void SignOut(string userName);

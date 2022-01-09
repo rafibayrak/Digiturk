@@ -33,7 +33,7 @@ namespace MovieApp.Api
             services.CustomJwtAuthentication(key);
             services.CustomRepositoryInjection();
             services.CustomServiceInjection();
-            services.CustomFluentValidator();
+            //services.CustomFluentValidator();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

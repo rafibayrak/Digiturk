@@ -10,7 +10,7 @@ namespace MovieApp.Business.Extensions.Dependencies
             services.AddMemoryCache();
             services.AddHttpContextAccessor();
             services.AddAutoMapper(typeof(ServiceInjection));
-            services.AddSingleton<IAuthService, AuthService>();
+            services.AddSingleton<IAuthenticateService, AuthenticateService>();
             services.AddSingleton<IMovieService, MovieService>();
             services.AddSingleton<ICategoryService, CategoryService>();
         }

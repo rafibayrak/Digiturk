@@ -15,7 +15,7 @@ namespace MovieApp.Business.Aspects
 
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            var service = context.HttpContext.RequestServices.GetService<IAuthService>();
+            var service = context.HttpContext.RequestServices.GetService<IAuthenticateService>();
             if (!service.IsTokenValid(context.HttpContext.User.Identity.Name))
             {
                 context.Result = new UnauthorizedResult();

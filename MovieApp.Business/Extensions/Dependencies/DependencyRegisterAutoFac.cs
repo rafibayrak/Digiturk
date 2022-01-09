@@ -27,7 +27,7 @@ namespace MovieApp.Business.Extensions.Dependencies
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
                 .EnableInterfaceInterceptors(new ProxyGenerationOptions() {
                     Selector = new AspectInterseptorSelector()
-                }).SingleInstance();
+                }).InstancePerLifetimeScope();
         }
     }
 }

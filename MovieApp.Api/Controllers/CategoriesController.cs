@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MovieApp.Business.Aspects;
+using MovieApp.Business.Extensions;
 using MovieApp.Business.Services.IServices;
 
 namespace MovieApp.Api.Controllers
@@ -17,10 +18,9 @@ namespace MovieApp.Api.Controllers
         }
 
         [HttpGet("getCategories")]
-        [Logger]
         public IActionResult GetCategories()
         {
-            return Ok(_categoryService.GetCategories());
+            return this.NotFoundOrOk(_categoryService.GetCategories());
         }
     }
 }
