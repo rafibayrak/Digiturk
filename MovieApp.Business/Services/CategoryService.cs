@@ -26,8 +26,5 @@ namespace MovieApp.Business.Services
         {
             return _mapper.Map<List<CategoryDto>>(_categoryRepository.GetCategories());
         }
-
-        //CacheRemoveAspect("GetCategories")
-        //AddCtg()
     }
 }

@@ -18,7 +18,7 @@ namespace MovieApp.Business.Aspects
         {
             if (!typeof(IValidator).IsAssignableFrom(validatorType))
             {
-                throw new Exception("Yanlış doğrulama türü");
+                throw new Exception("Incorrect validation type");
             }
 
             _validatorType = validatorType;
