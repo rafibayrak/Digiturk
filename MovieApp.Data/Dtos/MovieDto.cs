@@ -9,5 +9,6 @@ namespace MovieApp.Data.Dtos
         public DateTime ReleaseDate { get; set; }
         public string Description { get; set; }
         public int Point { get; set; }
+        public Guid CategoryId { get; set; }
     }
 }

@@ -8,5 +8,15 @@
     "description": "Güzel film",
     "categoryId": "64e0ff93-43c5-42db-862d-50d87b8cd64d",
     "point": 4
+  },
+  {
+    "id": "f7e6de71-4867-4bd9-8d8e-8928b4a4e559",
+    "name": "Yüzüklerin Efendisi",
+    "creationTime": "8/18/2010 12:00:00 AM",
+    "modifyTime": "8/18/2010 12:00:00 AM",
+    "releaseDate": "8/18/2010 12:00:00 AM",
+    "description": "Güzel film",
+    "categoryId": "64e0ff93-43c5-42db-862d-50d87b8cd64d",
+    "point": 4
   }
 ]

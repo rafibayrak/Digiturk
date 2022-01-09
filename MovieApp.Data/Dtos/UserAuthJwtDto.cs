@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace MovieApp.Data.Dtos
 {
-    public class UserAuthDto
+    public class UserAuthJwtDto : BaseAuthDto
     {
-        public string UserName { get; set; }
         public string Token { get; set; }
     }
 }

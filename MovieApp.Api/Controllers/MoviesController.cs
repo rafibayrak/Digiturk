@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MovieApp.Business.Aspects;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MovieApp.Business.Extensions;
 using MovieApp.Business.Services.IServices;
 using System;
@@ -8,6 +8,7 @@ namespace MovieApp.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class MoviesController : ControllerBase
     {
         private readonly IMovieService _movieService;
@@ -17,7 +18,11 @@ namespace MovieApp.Api.Controllers
             _movieService = movieService;
         }
 
-        [AuthorizeVerifyToken]
+        /// <summary>
+        /// Id ye göre Filmin bilgilerini gonderir
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("getMovieById/{id}")]
         public IActionResult GetMovieById(Guid id)
         {
@@ -25,7 +30,11 @@ namespace MovieApp.Api.Controllers
             return this.NotFoundOrOk(movieDtos);
         }
 
-        [AuthorizeVerifyToken]
+        /// <summary>
+        /// Kategorinin Id sine göre Filminlerin bilgilerini gonderir
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
         [HttpGet("getMoviesByCategoryId/{categoryId}")]
         public IActionResult GetMoviesByCategoryId(Guid categoryId)
         {
@@ -33,6 +42,14 @@ namespace MovieApp.Api.Controllers
             return this.NotFoundOrOk(movieDtos);
         }
 
+        /// <summary>
+        /// Filmin oynatilabilir icerigini gondermektedir
+        /// PhysicalFile fiziksel dosya yolundan parcalayarak aralikli olarak gonderilmesini saglamaktadir
+        /// Dosya yolu olarak workingDirectory altinda Movies folder kullanilmaktadir
+        /// frontend de video tagnin src alanina url verilmesi yeterlidir
+        /// </summary>
+        /// <param name="movieId"></param>
+        /// <returns></returns>
         [HttpGet("contentPlay/{movieId}")]
         public IActionResult ContentPlay(Guid movieId)
         {

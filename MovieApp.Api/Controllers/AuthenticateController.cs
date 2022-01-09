@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MovieApp.Business.Aspects;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MovieApp.Business.Extensions;
 using MovieApp.Business.Services.IServices;
 using MovieApp.Data.Dtos;
 using System;
+using System.Threading.Tasks;
 
 namespace MovieApp.Api.Controllers
 {
@@ -18,24 +19,30 @@ namespace MovieApp.Api.Controllers
             _authService = authService;
         }
 
+        /// <summary>
+        /// Cookie Authentication kullanildi
+        /// LoginDto icin ValidationAspect kullanildi 
+        /// ValidationAspect icerisinde FluentValidation ile kontroller yapildi
+        /// </summary>
+        /// <param name="loginDto"></param>
+        /// <returns></returns>
         [HttpPost("signin")]
-        //[Logger]
-        public IActionResult SignIn(LoginDto loginDto)
+        public async Task<IActionResult> SignIn(LoginDto loginDto)
         {
-            var userAuthDto = _authService.SignIn(loginDto);
-            if (userAuthDto == null)
-            {
-                throw new Exception("User not found");
-            }
-
-            return this.NotFoundOrOk(userAuthDto);
+            var userAuthDto = await _authService.SignInCookieAsync(loginDto);
+            return this.NotFoundOrOk(userAuthDto, "UserName or Password not valid");
         }
 
+        /// <summary>
+        /// Olusturulan Session sonlandirilir
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("signout")]
-        [AuthorizeVerifyToken]
-        public IActionResult SignOut()
+        //[AuthorizeVerifyToken] JWT Auth icin yazildi
+        [Authorize]
+        public async Task<IActionResult> Signout()
         {
-            _authService.SignOut(HttpContext.User.Identity.Name);
+            await _authService.SignOutCookie();
             return NoContent();
         }
     }

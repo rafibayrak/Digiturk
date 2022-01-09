@@ -1,11 +1,11 @@
 ﻿using MovieApp.Data.Dtos;
+using System.Threading.Tasks;
 
 namespace MovieApp.Business.Services.IServices
 {
     public interface IAuthenticateService
     {
-        public UserAuthDto SignIn(LoginDto loginDto);
-        public void SignOut(string userName);
-        public bool IsTokenValid(string userName);
+        public Task<BaseAuthDto> SignInCookieAsync(LoginDto loginDto);
+        public Task SignOutCookie();
     }
 }

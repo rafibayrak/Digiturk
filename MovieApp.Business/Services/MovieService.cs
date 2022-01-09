@@ -53,10 +53,9 @@ namespace MovieApp.Business.Services
         }
 
         [LoggerAspect]
-        [MemoryCacheAspect]
         public string GetMoviePath(string movieId)
         {
-            var filePath = Path.Combine(_appSettings.WorkingDirectory, "Movies", movieId);
+            var filePath = Path.Combine(_appSettings.WorkingDirectory, "Movies", $"{movieId}.mp4");
             if (!File.Exists(filePath))
             {
                 return string.Empty;

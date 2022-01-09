@@ -1,19 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MovieApp.Business.Extensions
 {
     public static class ControllerResponse
     {
-        public static IActionResult NotFoundOrOk<T>(this ControllerBase controllerBase, T responseValue)
+        public static IActionResult NotFoundOrOk<T>(this ControllerBase controllerBase, T responseValue, string notFoundMessage = "")
         {
             if (responseValue == null)
             {
-                return controllerBase.NotFound();
+                return controllerBase.NotFound(notFoundMessage);
             }
 
             return controllerBase.Ok(responseValue);

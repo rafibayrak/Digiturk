@@ -14,6 +14,11 @@ namespace MovieApp.Api.Controllers
             _movieService = movieService;
         }
 
+        /// <summary>
+        /// Anasayfa icin filmlerin bir Point sistemine sahip oldugu varsayilarak
+        /// En yuksek Pointe sahip 20 film gonderildi
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getTopTwentyMovies")]
         public IActionResult GetTopTwentyMovies()
         {
