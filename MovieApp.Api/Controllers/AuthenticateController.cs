@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MovieApp.Business.Extensions;
 using MovieApp.Business.Services.IServices;
 using MovieApp.Data.Dtos;
-using System;
 using System.Threading.Tasks;
 
 namespace MovieApp.Api.Controllers
@@ -38,8 +36,6 @@ namespace MovieApp.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("signout")]
-        //[AuthorizeVerifyToken] JWT Auth icin yazildi
-        [Authorize]
         public async Task<IActionResult> Signout()
         {
             await _authService.SignOutCookie();

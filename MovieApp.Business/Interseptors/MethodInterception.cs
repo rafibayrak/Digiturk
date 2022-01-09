@@ -48,6 +48,7 @@ namespace MovieApp.Business.Interseptors
                     OnSuccess(invocation);
                 }
             }
+
             OnAfter(invocation);
         }
     }

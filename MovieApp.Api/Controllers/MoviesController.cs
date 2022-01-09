@@ -8,7 +8,6 @@ namespace MovieApp.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class MoviesController : ControllerBase
     {
         private readonly IMovieService _movieService;

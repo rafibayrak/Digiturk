@@ -14,6 +14,7 @@ using System.Linq;
 
 namespace MovieApp.Business.Services
 {
+    [AuthorizationAspect("public")]
     public class MovieService : IMovieService
     {
         private readonly AppSettings _appSettings;
@@ -53,6 +54,7 @@ namespace MovieApp.Business.Services
         }
 
         [LoggerAspect]
+        [MemoryCacheAspect]
         public string GetMoviePath(string movieId)
         {
             var filePath = Path.Combine(_appSettings.WorkingDirectory, "Movies", $"{movieId}.mp4");

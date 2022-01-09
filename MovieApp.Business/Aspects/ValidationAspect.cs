@@ -20,6 +20,7 @@ namespace MovieApp.Business.Aspects
             {
                 throw new Exception("Yanlış doğrulama türü");
             }
+
             _validatorType = validatorType;
         }
 

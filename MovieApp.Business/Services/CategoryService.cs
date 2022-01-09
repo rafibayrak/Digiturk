@@ -21,9 +21,13 @@ namespace MovieApp.Business.Services
 
         [LoggerAspect]
         [MemoryCacheAspect]
+        [AuthorizationAspect("public")]
         public List<CategoryDto> GetCategories()
         {
             return _mapper.Map<List<CategoryDto>>(_categoryRepository.GetCategories());
         }
+
+        //CacheRemoveAspect("GetCategories")
+        //AddCtg()
     }
 }
