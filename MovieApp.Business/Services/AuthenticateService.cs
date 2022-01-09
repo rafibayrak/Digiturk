@@ -17,13 +17,11 @@ namespace MovieApp.Business.Services
 {
     public class AuthenticateService : IAuthenticateService
     {
-        private readonly AppSettings _appSettings;
         private readonly IUserRepository _userRepository;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         public AuthenticateService(IOptions<AppSettings> appSettings, IUserRepository userRepository, IHttpContextAccessor httpContextAccessor)
         {
-            _appSettings = appSettings.Value;
             _userRepository = userRepository;
             _httpContextAccessor = httpContextAccessor;
         }
