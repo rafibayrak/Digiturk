@@ -12,6 +12,7 @@ using MovieApp.Business.Extensions;
 using MovieApp.Business.Extensions.Dependencies;
 using MovieApp.Data.Core;
 using NLog;
+using StackExchange.Redis;
 using System.Text;
 
 namespace MovieApp.Api
@@ -33,6 +34,8 @@ namespace MovieApp.Api
             services.CustomRepositoryInjection();
             services.CustomServiceInjection();
             services.AddControllers();
+            var redisConnection = ConnectionMultiplexer.Connect(Configuration.GetConnectionString("Redis"));
+            services.AddSingleton<IConnectionMultiplexer>(redisConnection);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Movie.Api", Version = "v1" });

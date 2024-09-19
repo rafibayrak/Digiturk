@@ -16,7 +16,9 @@ namespace MovieApp.Business.Extensions.Dependencies
             services.AddScoped<IAuthenticateService, AuthenticateService>();
             services.AddScoped<IMovieService, MovieService>();
             services.AddScoped<ICategoryService, CategoryService>();
-
+            services.AddScoped<ICustomCacheService, CustomCacheService>();
+            services.AddScoped<IRedisCacheService, RedisCacheService>();
+            
             ServiceProvider = services.BuildServiceProvider();
         }
     }

@@ -7,5 +7,6 @@ namespace MovieApp.Data.Core
     {
         public string SecretKey { get; set; }
         public string WorkingDirectory { get; set; } = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+        public string CacheType { get; set; }
     }
 }
